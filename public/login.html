@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <title>Login - Beauty Appointments</title>
+  <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Quicksand', sans-serif;
+      background-color: #EEF1DA;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+    form {
+      background: #D5E5D5;
+      padding: 2rem;
+      border-radius: 16px;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+      width: 100%;
+      max-width: 400px;
+      text-align: center;
+    }
+    h2 {
+      margin-bottom: 1.5rem;
+      color: #ADB2D4;
+    }
+    input {
+      display: block;
+      margin-bottom: 1rem;
+      width: -webkit-fill-available;
+      padding: 0.75rem;
+      border: 1px solid #C7D9DD;
+      border-radius: 8px;
+      font-size: 1rem;
+      background-color: white;
+    }
+    button {
+      padding: 0.75rem 1rem;
+      background-color: #ADB2D4;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: bold;
+      font-size: 1rem;
+    }
+    .message {
+      margin-top: 1rem;
+      color: red;
+    }
+    a {
+      color: #ADB2D4;
+      font-weight: bold;
+      text-decoration: none;
+    }
+    a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+
+  <form id="login-form">
+    <h2>Iniciar Sesión</h2>
+    <input type="text" id="username" placeholder="Usuario" required />
+    <input type="password" id="password" placeholder="Contraseña" required />
+    <button type="submit">Ingresar</button>
+    <p>¿No tenés cuenta? <a href="/user/register">Registrate</a></p>
+    <div class="message" id="message"></div>
+  </form>
+
+  <script>
+    document.getElementById('login-form').addEventListener('submit', async function(e) {
+      e.preventDefault();
+      const username = document.getElementById('username').value;
+      const password = document.getElementById('password').value;
+      const message = document.getElementById('message');
+
+      try {
+        const res = await fetch('/users/login', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json'
+          },
+          body: JSON.stringify({ username, password })
+        });
+
+        const data = await res.json();
+        if (res.ok) {
+          message.style.color = 'green';
+          message.textContent = 'Login exitoso!';
+          localStorage.setItem('token', data.token);
+          window.location.href = '/';
+        } else {
+          message.style.color = 'red';
+          message.textContent = data.error;
+        }
+      } catch (err) {
+        message.textContent = 'Error de conexión.';
+      }
+    });
+  </script>
+
+</body>
+</html>

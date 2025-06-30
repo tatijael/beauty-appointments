@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Administrador de Turnos</title>
+  <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+  <header class="main-header">
+    <div class="user-info">
+      <span class="user-icon">👤</span>
+      <span id="username-display" style="margin-right: 10px;"></span>
+      <button id="logoutBtn">Salir</button>
+    </div>
+  </header>
+  <div class="container" style="display: flex; justify-content: center; gap: 40px; align-items: flex-start; padding: 20px;">
+    <div>
+      <h1>Agendar Turnos</h1>
+      <form id="appointmentForm" style="display: flex; flex-direction: column; gap: 10px;width: 400px;">
+        <input type="text" id="cliente" placeholder="Nombre" required>
+        <input type="date" id="fecha" required>
+        <input type="time" id="hora" required>
+        <input type="text" id="servicio" placeholder="Servicio (uñas, facial...)" required>
+        <button type="submit">Agregar Turno</button>
+      </form>
+    </div>
+
+    <div style="flex: 1;">
+      <h2 style="margin-bottom: 10px;">Lista de turnos</h2>
+      <div id="appointments" class="appointments-list"></div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const usernameDisplay = document.getElementById('username-display');
+      const logoutBtn = document.getElementById('logoutBtn');
+
+      try {
+        const token = localStorage.getItem('token');
+        if (token) {
+          const payload = JSON.parse(atob(token.split('.')[1]));
+          const username = payload.username;
+          if (usernameDisplay) {
+            usernameDisplay.textContent = `Hola, ${username}`;
+          }
+          localStorage.setItem('username', username);
+        }
+      } catch (err) {
+        console.error('Error al leer el token:', err);
+      }
+
+      if (logoutBtn) {
+        logoutBtn.addEventListener('click', () => {
+          localStorage.removeItem('token');
+          localStorage.removeItem('username');
+          window.location.href = '/user/login';
+        });
+      }
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Registro de Usuario</title>
+  <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@500;700&display=swap" rel="stylesheet"/>
+  <style>
+    body {
+      background-color: #EEF1DA;
+      font-family: 'Quicksand', sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+    .register-container {
+      background-color: #D5E5D5;
+      padding: 2rem;
+      border-radius: 10px;
+      width: 100%;
+      max-width: 400px;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    }
+    h1 {
+      text-align: center;
+      color: #ADB2D4;
+      margin-bottom: 1rem;
+    }
+    input {
+      width: -webkit-fill-available;
+      padding: 0.75rem;
+      margin-bottom: 1rem;
+      border: 1px solid #C7D9DD;
+      border-radius: 6px;
+      font-size: 1rem;
+    }
+    button {
+      width: 100%;
+      background-color: #ADB2D4;
+      color: white;
+      padding: 0.75rem;
+      border: none;
+      border-radius: 6px;
+      font-size: 1rem;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #C7D9DD;
+    }
+    .back-link {
+      text-align: center;
+      margin-top: 1rem;
+    }
+    .back-link a {
+      color: #ADB2D4;
+      text-decoration: none;
+      font-size: 1rem;
+    }
+  </style>
+</head>
+<body>
+  <div class="register-container">
+    <h1>Crear Cuenta</h1>
+    <form id="registerForm">
+      <input type="text" id="username" placeholder="Nombre de usuario" required />
+      <input type="password" id="password" placeholder="Contraseña" required />
+      <button type="submit">Registrarse</button>
+    </form>
+    <div class="back-link">
+          <p>¿No tenés cuenta?  <a href="/user/login"> Iniciá sesión</a></p>
+   
+    </div>
+  </div>
+
+  <script>
+    document.getElementById('registerForm').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const username = document.getElementById('username').value;
+      const password = document.getElementById('password').value;
+
+      const clearMessages = () => {
+        const existing = document.querySelector('.form-message');
+        if (existing) existing.remove();
+      };
+
+      const showMessage = (message, color) => {
+        clearMessages();
+        const msg = document.createElement('p');
+        msg.className = 'form-message';
+        msg.textContent = message;
+        msg.style.backgroundColor = color;
+        msg.style.color = '#fff';
+        msg.style.padding = '0.75rem';
+        msg.style.textAlign = 'center';
+        msg.style.marginTop = '1rem';
+        msg.style.borderRadius = '6px';
+        document.querySelector('.register-container').appendChild(msg);
+        setTimeout(() => msg.remove(), 5000);
+      };
+
+      try {
+        const res = await fetch('/users/register', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ username, password })
+        });
+
+        const data = await res.json();
+        if (res.ok) {
+          showMessage('Usuario registrado correctamente. Redirigiendo al login...', '#2e7d32');
+          setTimeout(() => {
+            window.location.href = '/user/login';
+          }, 2000);
+        } else {
+          showMessage(data.error || 'Ocurrió un error.', '#d32f2f');
+        }
+      } catch (err) {
+        showMessage('Error al registrar el usuario.', '#d32f2f');
+      }
+    });
+  </script>
+</body>
+</html>
