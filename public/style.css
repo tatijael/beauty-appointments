@@ -82,7 +82,7 @@ button:hover {
 
 .main-header {
   display: flex;
-  justify-content: flex-end;
+  justify-content: space-between;
   padding: 10px 20px;
   background-color: #f7f7f7;
   border-bottom: 1px solid #ccc;
@@ -94,6 +94,7 @@ button:hover {
   align-items: center;
   justify-content: flex-end;
   gap: 10px;
+  font-size: 1.5rem;
 }
 
 .user-icon {
@@ -109,6 +110,7 @@ button:hover {
   cursor: pointer;
   font-family: inherit;
   width: fit-content;
+  font-size: 1.5rem;
 }
 
 #logoutBtn:hover {

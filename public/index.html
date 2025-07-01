@@ -8,6 +8,7 @@
 </head>
 <body>
   <header class="main-header">
+    <h1 style="color: #ADB2D4; font-size: 2rem; margin-left: 30px;">Essenzia Turnos</h1>
     <div class="user-info">
       <span class="user-icon">👤</span>
       <span id="username-display" style="margin-right: 10px;"></span>
@@ -16,14 +17,16 @@
   </header>
   <div class="container" style="display: flex; justify-content: center; gap: 40px; align-items: flex-start; padding: 20px;">
     <div>
-      <h1>Agendar Turnos</h1>
-      <form id="appointmentForm" style="display: flex; flex-direction: column; gap: 10px;width: 400px;">
-        <input type="text" id="cliente" placeholder="Nombre" required>
-        <input type="date" id="fecha" required>
-        <input type="time" id="hora" required>
-        <input type="text" id="servicio" placeholder="Servicio (uñas, facial...)" required>
-        <button type="submit">Agregar Turno</button>
-      </form>
+      <div style="display: flex; flex-direction: column; align-items: center;">
+        <h1 style="margin-bottom: 2rem; text-align: center; color: #ADB2D4; font-size: 2rem;">Agendar Turnos</h1>
+        <form id="appointmentForm" style="display: flex; flex-direction: column; gap: 10px;width: 400px;">
+          <input type="text" id="cliente" placeholder="Nombre" required>
+          <input type="date" id="fecha" required>
+          <input type="time" id="hora" required>
+          <input type="text" id="servicio" placeholder="Servicio (uñas, facial...)" required>
+          <button type="submit">Agregar Turno</button>
+        </form>
+      </div>
     </div>
 
     <div style="flex: 1;">
@@ -64,5 +67,8 @@
       }
     });
   </script>
+  <footer style="position: fixed; bottom: 10px; right: 20px; font-size: 0.9rem; color: #555;">
+    Desarrollado por Tatiana Jael Saucedo
+  </footer>
 </body>
 </html>

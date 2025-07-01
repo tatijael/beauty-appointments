@@ -61,16 +61,19 @@
   </style>
 </head>
 <body>
-  <div class="register-container">
-    <h1>Crear Cuenta</h1>
-    <form id="registerForm">
-      <input type="text" id="username" placeholder="Nombre de usuario" required />
-      <input type="password" id="password" placeholder="Contraseña" required />
-      <button type="submit">Registrarse</button>
-    </form>
-    <div class="back-link">
-          <p>¿No tenés cuenta?  <a href="/user/login"> Iniciá sesión</a></p>
-   
+  <div style="display: flex; flex-direction: column; align-items: center;width: 100%;justify-content: start;">
+    <h1 style="margin-bottom: 4rem; text-align: center; color: #ADB2D4; font-size: 5rem;">Essenzia Turnos</h1>
+    <div class="register-container">
+      <h1>Crear Cuenta</h1>
+      <form id="registerForm">
+        <input type="text" id="username" placeholder="Nombre de usuario" required />
+        <input type="password" id="password" placeholder="Contraseña" required />
+        <button type="submit">Registrarse</button>
+      </form>
+      <div class="back-link">
+            <p>¿No tenés cuenta?  <a href="/user/login"> Iniciá sesión</a></p>
+     
+      </div>
     </div>
   </div>
 
@@ -121,5 +124,8 @@
       }
     });
   </script>
+  <footer style="position: fixed; bottom: 10px; right: 20px; font-size: 0.9rem; color: #555;">
+    Desarrollado por Tatiana Jael Saucedo
+  </footer>
 </body>
 </html>
