@@ -23,10 +23,50 @@
       max-width: 400px;
       box-shadow: 0 4px 6px rgba(0,0,0,0.1);
     }
-    h1 {
+    h2 {
       text-align: center;
       color: #ADB2D4;
       margin-bottom: 1rem;
+      font-size: 2rem;
+    }
+    .main-title {
+      margin-bottom: 4rem;
+      text-align: center;
+      color: #ADB2D4;
+      font-size: 5rem;
+    }
+
+    @media (max-width: 480px) {
+      body {
+        padding: 1rem;
+        height: auto;
+        align-items: start;
+      }
+
+      /* h1 {
+        font-size: 2.5rem !important;
+        margin: 2rem 0 1.5rem;
+      } */
+
+      .register-container {
+        width: 100%;
+        padding: 1.5rem;
+        box-sizing: border-box;
+      }
+
+      h2 {
+        font-size: 1.75rem;
+        margin-bottom: 1.5rem;
+      }
+
+      input,
+      button {
+        font-size: 1rem;
+      }
+
+      .back-link a {
+        font-size: 0.9rem;
+      }
     }
     input {
       width: -webkit-fill-available;
@@ -61,10 +101,10 @@
   </style>
 </head>
 <body>
-  <div style="display: flex; flex-direction: column; align-items: center;width: 100%;justify-content: start;">
-    <h1 style="margin-bottom: 4rem; text-align: center; color: #ADB2D4; font-size: 5rem;">Essenzia Turnos</h1>
+  <div style="display: flex; flex-direction: column; align-items: center;width: 100%;justify-content: center;height: 100vh;">
+    <h1 class="main-title">Essenzia Turnos</h1>
     <div class="register-container">
-      <h1>Crear Cuenta</h1>
+      <h2>Crear Cuenta</h1>
       <form id="registerForm">
         <input type="text" id="username" placeholder="Nombre de usuario" required />
         <input type="password" id="password" placeholder="Contraseña" required />
