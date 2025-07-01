@@ -47,6 +47,9 @@
             usernameDisplay.textContent = `Hola, ${username}`;
           }
           localStorage.setItem('username', username);
+        } else {
+          console.warn('No se encontró el token en localStorage');
+          window.location.href = '/user/login';
         }
       } catch (err) {
         console.error('Error al leer el token:', err);

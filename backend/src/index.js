@@ -32,7 +32,7 @@ app.get('/user/register', (req, res) => {
 app.use(express.static(path.join(__dirname, '../../public')));
 
 app.get('/', (req, res) => {
-  res.redirect('/user/login');
+  res.sendFile(path.join(__dirname, '../../public/index.html'));
 });
 
 // Iniciar servidor
